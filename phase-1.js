@@ -27,12 +27,25 @@ function liftWeights() {
 
 // refactor this function to handle Promises using async/await instead of
   // .then and .catch
-function workout() {
-  stretch()
-    .then(runOnTreadmill)
-    .then(liftWeights)
-    .then(() => console.log("done working out"))
-    .catch((err) => console.log(err));
+/*
+async function workout() {
+  await stretch();
+  await runOnTreadmill();
+  await liftWeights();
+  console.log('done working out');
+}
+*/
+
+// I don't think it needs to handle errors, but in case:
+async function workout() {
+  try {
+    await stretch();
+    await runOnTreadmill();
+    await liftWeights();
+    console.log('done working out');
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /* ============================ TEST YOUR CODE ============================
